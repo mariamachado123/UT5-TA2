@@ -1,4 +1,4 @@
-
+package org.example.UT5;
 
 import java.util.LinkedList;
 
@@ -24,7 +24,10 @@ public class TArbolTrie implements IArbolTrie {
 
     @Override
     public int buscar(String palabra) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (raiz == null) {
+            return -1;
+        }
+        return raiz.buscar(palabra);
     }
 
     @Override

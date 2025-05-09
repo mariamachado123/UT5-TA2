@@ -1,3 +1,5 @@
+package org.example.UT5;
+
 import java.util.LinkedList;
 
 public class TNodoTrie implements INodoTrie {
@@ -62,9 +64,26 @@ public class TNodoTrie implements INodoTrie {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Busca una palabra en el trie.
+     * @param s (la palabra a buscar)
+     * @return (cantidad de comparaciones si la palabra está. -1 si no está)
+     */
     @Override
     public int buscar(String s) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TNodoTrie nodo = this;
+        int cantidadMov = 0;
+        for (int c = 0; c < s.length(); c++) {
+            int indice = s.charAt(c) - 'a';
+            if (nodo.hijos[indice] == null) {
+                return -1;
+            }
+            cantidadMov++;
+            nodo = nodo.hijos[indice];
+        }
+        if (nodo.esPalabra){
+            return cantidadMov;
+        }
+        return -1;
     }
-
 }
