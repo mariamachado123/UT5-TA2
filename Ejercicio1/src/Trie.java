@@ -16,4 +16,9 @@ public class Trie {
             raiz.construirIndice(raiz, "");
         }
     }
+
+    public List<Integer> buscar(String palabra) {
+        if (raiz == null) return null;
+        return raiz.buscarRec(raiz, palabra, 0);
+    }    
 }

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class NodoTrie {
@@ -8,6 +9,7 @@ public class NodoTrie {
     public NodoTrie() {
         hijos = new NodoTrie[26];
         esPalabra = false;
+        paginas = new ArrayList<>();
     }
 
     public void insertarRec(NodoTrie nodo, String palabra, int indice, int pagina) {
@@ -39,4 +41,23 @@ public class NodoTrie {
         }
     }
 
+    public List<Integer> buscarRec(NodoTrie nodo, String palabra, int indice) {
+        if (indice == palabra.length()) {
+            if (nodo.esPalabra) {
+                return nodo.paginas;
+            } else {
+                return null;
+            }
+        }
+    
+        char caracter = Character.toLowerCase(palabra.charAt(indice));
+        int posicion = caracter - 'a';
+    
+        if (nodo.hijos[posicion] == null) {
+            return null;
+        }
+    
+        return buscarRec(nodo.hijos[posicion], palabra, indice + 1);
+    }
+    
 }
